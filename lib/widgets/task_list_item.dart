@@ -41,6 +41,7 @@ class TaskListItem extends StatelessWidget {
             Provider.of<TodosModel>(context, listen: false).deleteTodo(task);
           },
         ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
       color: Colors.white,
     );
