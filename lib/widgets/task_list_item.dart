@@ -15,8 +15,6 @@ class TaskListItem extends StatelessWidget {
         leading: Theme(
             data: ThemeData(unselectedWidgetColor: Colors.grey),
             child: Checkbox(
-              // checkColor: Colors.orange,
-
               activeColor: Colors.orange,
               value: task.completed,
               onChanged: (bool checked) {
