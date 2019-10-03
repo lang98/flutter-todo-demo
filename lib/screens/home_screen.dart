@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/tabs/all_tasks.dart';
+import 'package:flutter_todo_app/tabs/complete_tasks.dart';
+import 'package:flutter_todo_app/tabs/incomplete_tasks.dart';
+
+import 'add_task_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -9,7 +13,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
-  final List<Widget> _children = [AllTasksTab(), null];
+  final List<Widget> _children = [
+    AllTasksTab(),
+    IncompleteTasksTab(),
+    CompleteTasksTab()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +26,32 @@ class _HomeScreenState extends State<HomeScreen>
         title: Text('Todos'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.more_vert),
             onPressed: () {},
           ),
         ],
         backgroundColor: Colors.orange,
       ),
       body: _children[_currentIndex],
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddTaskScreen(),
+            ),
+          );
+        },
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.apps), title: Text('All')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.delete), title: Text('Deleted')),
+              icon: Icon(Icons.delete), title: Text('Incomplete')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), title: Text('Complete'))
         ],
         currentIndex: _currentIndex,
         onTap: onTabTapped,
