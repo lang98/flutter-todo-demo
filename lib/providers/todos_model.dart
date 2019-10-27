@@ -39,4 +39,10 @@ class TodosModel extends ChangeNotifier {
     _tasks.remove(task);
     notifyListeners();
   }
+
+  void editTodo(Task task, Task edited) {
+    final taskIndex = _tasks.indexOf(task);
+    _tasks[taskIndex] = edited;
+    notifyListeners();
+  }
 }

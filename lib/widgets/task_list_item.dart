@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/model/task.dart';
 import 'package:flutter_todo_app/providers/todos_model.dart';
+import 'package:flutter_todo_app/screens/task_detail_screen.dart';
 import 'package:provider/provider.dart' show Provider;
 
 class TaskListItem extends StatelessWidget {
@@ -12,6 +13,16 @@ class TaskListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TaskDetailScreen(
+                task: task,
+              ),
+            ),
+          );
+        },
         leading: Theme(
             data: ThemeData(unselectedWidgetColor: Colors.grey),
             child: Checkbox(
