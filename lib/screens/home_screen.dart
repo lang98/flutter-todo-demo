@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/screens/about_screen.dart';
 import 'package:flutter_todo_app/screens/task_detail_screen.dart';
 import 'package:flutter_todo_app/tabs/all_tasks.dart';
 import 'package:flutter_todo_app/tabs/complete_tasks.dart';
@@ -24,10 +25,24 @@ class _HomeScreenState extends State<HomeScreen>
       appBar: AppBar(
         title: Text('Todos'),
         actions: <Widget>[
-          IconButton(
+          PopupMenuButton<int>(
             icon: Icon(Icons.more_vert),
-            onPressed: () {},
-          ),
+            itemBuilder: (context) =>
+                [PopupMenuItem(value: 1, child: Text("About App"))],
+            onSelected: (value) {
+              switch (value) {
+                case 1:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AboutScreen(),
+                    ),
+                  );
+                  break;
+                default:
+              }
+            },
+          )
         ],
         backgroundColor: Colors.orange,
       ),
